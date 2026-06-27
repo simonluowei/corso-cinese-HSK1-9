@@ -29,13 +29,26 @@
   .optbtn:hover{border-color:#C2452C !important}
   *::-webkit-scrollbar{width:10px;height:10px}
   *::-webkit-scrollbar-thumb{background:#D8CDBA;border-radius:8px}
+  /* ---- RESPONSIVE / MOBILE ---- */
+  @media (max-width:680px){
+    .topinner{flex-wrap:wrap;gap:10px !important;padding:11px 16px !important}
+    .mainnav{order:3;width:100%;margin-left:0 !important;gap:22px !important;overflow-x:auto;padding-bottom:3px;-webkit-overflow-scrolling:touch}
+    .mainnav::-webkit-scrollbar{height:0}
+    .wrap{padding-left:16px !important;padding-right:16px !important}
+    .col1{grid-template-columns:1fr !important}
+    .hero-zh{font-size:60px !important}
+    .heroh{padding:40px 0 28px !important}
+  }
+  @media (max-width:420px){
+    .hero-zh{font-size:48px !important}
+  }
 </style>
 </helmet>
 <div class="rd" style="min-height:100vh;background:#F1EBDF;color:#211C16;display:flex;flex-direction:column">
 
   <!-- TOPBAR -->
   <header style="position:sticky;top:0;z-index:50;background:rgba(241,235,223,.88);backdrop-filter:blur(10px);border-bottom:1px solid #E2D9CA">
-    <div style="max-width:1120px;margin:0 auto;padding:13px 28px;display:flex;align-items:center;gap:18px">
+    <div class="topinner" style="max-width:1120px;margin:0 auto;padding:13px 28px;display:flex;align-items:center;gap:18px">
       <div onClick="{{ goHome }}" style="display:flex;align-items:center;gap:11px;cursor:pointer">
         <div class="seal zhf" style="width:38px;height:38px;background:#C2452C;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;border-radius:3px;transition:transform .3s;box-shadow:0 2px 0 rgba(150,40,22,.5)">学</div>
         <div style="line-height:1.05">
@@ -43,7 +56,7 @@
           <div style="font:500 9.5px/1 'IBM Plex Mono',monospace;letter-spacing:.22em;text-transform:uppercase;color:#9A8F80;margin-top:3px">Il corso · HSK 1–9</div>
         </div>
       </div>
-      <nav style="display:flex;gap:24px;margin-left:24px">
+      <nav class="mainnav" style="display:flex;gap:24px;margin-left:24px">
         <span class="navlink" onClick="{{ goHome }}" style="font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;color:{{ navHome }};transition:color .2s">Percorso</span>
         <span class="navlink" onClick="{{ goVocab }}" style="font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;color:{{ navVocab }};transition:color .2s">Vocabolario</span>
         <span class="navlink" onClick="{{ goQuiz }}" style="font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;color:{{ navQuiz }};transition:color .2s">Quiz</span>
@@ -63,12 +76,12 @@
 
   <!-- ============ HOME / PERCORSO ============ -->
   <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
-  <div style="max-width:1120px;margin:0 auto;padding:0 28px 90px">
+  <div class="wrap" style="max-width:1120px;margin:0 auto;padding:0 28px 90px">
     <!-- hero -->
-    <section style="padding:60px 0 36px;border-bottom:1px solid #E2D9CA;animation:fadeUp .5s ease both">
+    <section class="heroh" style="padding:60px 0 36px;border-bottom:1px solid #E2D9CA;animation:fadeUp .5s ease both">
       <div style="font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.28em;text-transform:uppercase;color:#C2452C;margin-bottom:22px">Corso completo di cinese mandarino · 汉语</div>
       <div style="display:flex;align-items:flex-end;gap:30px;flex-wrap:wrap">
-        <h1 class="zhf" style="font-size:108px;font-weight:900;line-height:.86;margin:0;letter-spacing:.02em">学中文</h1>
+        <h1 class="zhf hero-zh" style="font-size:108px;font-weight:900;line-height:.86;margin:0;letter-spacing:.02em">学中文</h1>
         <div style="padding-bottom:12px;border-left:2px solid #DACFBC;padding-left:22px">
           <div style="font-size:31px;font-weight:600;line-height:1.08;font-style:italic;color:#2C2620">Il cinese<br>per chi pensa</div>
         </div>
@@ -118,7 +131,7 @@
               <span style="font:500 14px 'IBM Plex Mono',monospace;color:#C2452C;width:14px;text-align:center">{{ mod.chevron }}</span>
             </div>
             <sc-if value="{{ mod.open }}" hint-placeholder-val="{{ true }}">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 26px;margin:6px 0 10px">
+            <div class="col1" style="display:grid;grid-template-columns:1fr 1fr;gap:2px 26px;margin:6px 0 10px">
               <sc-for list="{{ mod.lessons }}" as="ls" hint-placeholder-count="6">
                 <div class="lrow" onClick="{{ ls.open }}" style="display:flex;align-items:center;gap:14px;padding:11px 12px;border-radius:4px;cursor:pointer;transition:background .15s">
                   <span style="width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font:600 11px 'IBM Plex Mono',monospace;border:1.5px solid {{ ls.dotBorder }};background:{{ ls.dotBg }};color:{{ ls.dotColor }}">{{ ls.badge }}</span>
@@ -150,7 +163,7 @@
   </div>
   </sc-if>
   <sc-if value="{{ isLesson }}" hint-placeholder-val="{{ true }}">
-  <div style="max-width:760px;margin:0 auto;padding:0 28px 100px">
+  <div class="wrap" style="max-width:760px;margin:0 auto;padding:0 28px 100px">
     <div style="display:flex;align-items:center;gap:11px;margin:26px 0 4px;flex-wrap:wrap">
       <span class="navlink" onClick="{{ goHome }}" style="cursor:pointer;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#9A8F80;transition:color .2s">Percorso</span>
       <span style="color:#CFC4B0;font-size:12px">/</span>
@@ -357,7 +370,7 @@
 
   <!-- ============ VOCAB PICKER ============ -->
   <sc-if value="{{ isVocab }}" hint-placeholder-val="{{ true }}">
-  <div style="max-width:900px;margin:0 auto;padding:46px 28px 90px;animation:fadeUp .4s ease both">
+  <div class="wrap" style="max-width:900px;margin:0 auto;padding:46px 28px 90px;animation:fadeUp .4s ease both">
     <div style="font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.24em;text-transform:uppercase;color:#C2452C">Vocabolario · 生词</div>
     <h1 style="font-size:38px;font-weight:600;font-style:italic;margin:10px 0 6px">Scegli un mazzo da studiare</h1>
     <p style="color:#7A7064;font-size:16px;margin:0 0 30px">Flashcard con audio e auto-valutazione. Tocca una raccolta per iniziare.</p>
@@ -388,7 +401,7 @@
 
   <!-- ============ FLASHCARDS SESSION ============ -->
   <sc-if value="{{ isCards }}" hint-placeholder-val="{{ true }}">
-  <div style="max-width:620px;margin:0 auto;padding:30px 28px 60px;display:flex;flex-direction:column;min-height:calc(100vh - 64px)">
+  <div class="wrap" style="max-width:620px;margin:0 auto;padding:30px 28px 60px;display:flex;flex-direction:column;min-height:calc(100vh - 64px)">
     <div style="display:flex;align-items:center;gap:14px">
       <div onClick="{{ C.exit }}" style="cursor:pointer;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#9A8F80">← Esci</div>
       <div style="flex:1;text-align:center;font:500 12px 'IBM Plex Mono';letter-spacing:.1em;color:#3A332A">{{ C.title }}</div>
@@ -440,7 +453,7 @@
 
   <!-- ============ QUIZ ============ -->
   <sc-if value="{{ isQuiz }}" hint-placeholder-val="{{ true }}">
-  <div style="max-width:620px;margin:0 auto;padding:30px 28px 60px;display:flex;flex-direction:column;min-height:calc(100vh - 64px)">
+  <div class="wrap" style="max-width:620px;margin:0 auto;padding:30px 28px 60px;display:flex;flex-direction:column;min-height:calc(100vh - 64px)">
     <sc-if value="{{ Q.picking }}" hint-placeholder-val="{{ true }}">
       <div style="animation:fadeUp .4s ease both">
         <div style="font:500 12px 'IBM Plex Mono';letter-spacing:.24em;text-transform:uppercase;color:#C2452C">Quiz · 测验</div>
@@ -498,7 +511,7 @@
 
   <!-- ============ PROGRESS ============ -->
   <sc-if value="{{ isProgress }}" hint-placeholder-val="{{ true }}">
-  <div style="max-width:900px;margin:0 auto;padding:46px 28px 90px;animation:fadeUp .4s ease both">
+  <div class="wrap" style="max-width:900px;margin:0 auto;padding:46px 28px 90px;animation:fadeUp .4s ease both">
     <div style="font:500 12px 'IBM Plex Mono';letter-spacing:.24em;text-transform:uppercase;color:#C2452C">I tuoi progressi · 进度</div>
     <h1 style="font-size:38px;font-weight:600;font-style:italic;margin:10px 0 30px">Il cammino finora</h1>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:34px">
@@ -522,7 +535,7 @@
 
   <!-- ============ GUIDA ALLO STUDIO ============ -->
   <sc-if value="{{ isGuida }}" hint-placeholder-val="{{ true }}">
-  <div style="max-width:780px;margin:0 auto;padding:46px 28px 90px;animation:fadeUp .4s ease both">
+  <div class="wrap" style="max-width:780px;margin:0 auto;padding:46px 28px 90px;animation:fadeUp .4s ease both">
     <div style="font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.24em;text-transform:uppercase;color:#C2452C">Guida allo studio · 学习指南</div>
     <h1 style="font-size:40px;font-weight:600;font-style:italic;margin:12px 0 8px;line-height:1.05">Quanto tempo serve<br>per imparare il cinese?</h1>
     <p style="font-size:17px;line-height:1.7;color:#5C5347;max-width:620px;margin:8px 0 0;text-wrap:pretty">Nessuno impara una lingua «in tre mesi». Ma con un ritmo costante il cinese è molto più accessibile di quanto si creda: ogni livello ha un traguardo chiaro, e ogni traguardo è raggiungibile. Ecco una mappa realistica, dal primo carattere alla padronanza.</p>
@@ -562,7 +575,7 @@
 
     <!-- ritmo consigliato -->
     <h2 style="font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:#3A332A;margin:24px 0 14px">Come organizzare il tempo</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+    <div class="col1" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
       <div style="background:#fff;border:1px solid #E8E0D1;border-radius:8px;padding:18px">
         <div class="zhf" style="font-size:22px;color:#C2452C;margin-bottom:6px">课堂</div>
         <div style="font-size:16px;font-weight:600;margin-bottom:6px">Con un insegnante</div>
@@ -596,7 +609,7 @@
 
   <!-- ============ AUTORE / ABOUT + DONAZIONE ============ -->
   <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ true }}">
-  <div style="max-width:900px;margin:0 auto;padding:46px 28px 90px;animation:fadeUp .4s ease both">
+  <div class="wrap" style="max-width:900px;margin:0 auto;padding:46px 28px 90px;animation:fadeUp .4s ease both">
     <div style="font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.24em;text-transform:uppercase;color:#C2452C">L'autore · 作者</div>
     <div style="display:flex;align-items:flex-end;gap:24px;flex-wrap:wrap;margin:14px 0 8px">
       <h1 style="font-size:44px;font-weight:700;font-style:italic;margin:0;line-height:1">Simon Luo Wei</h1>
@@ -604,7 +617,7 @@
     </div>
     <div style="font:500 13px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#7A7064">Traduttore e interprete giurato · Insegnante di cinese · Autore del corso</div>
 
-    <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:40px;margin-top:32px">
+    <div class="col1" style="display:grid;grid-template-columns:1.4fr 1fr;gap:40px;margin-top:32px">
       <div>
         <p style="margin:0 0 15px;font-size:16.5px;line-height:1.72;color:#2C2620;text-wrap:pretty">Traduttore e interprete giurato del <strong>Tribunale di Milano (CTU dal 2015)</strong>, insegnante di lingua e cultura cinese e autore di questo corso. Nato in Cina, è cresciuto e si è formato tra la Cina, l'Italia, la Svizzera e i Paesi Bassi.</p>
         <p style="margin:0 0 15px;font-size:16.5px;line-height:1.72;color:#2C2620;text-wrap:pretty">Dopo la laurea in <strong>Economia e Management all'Università Bocconi</strong>, ha proseguito con le lauree specialistiche in Economia e Politiche Internazionali (USI, Lugano) e Politiche Pubbliche e Sviluppo Umano (UNU-MERIT, Maastricht) — con ulteriori studi in filosofia e teologia (Università di Lucerna). È inoltre <strong>attore professionista</strong> diplomato alla Scuola Teatro Arsenale di Milano.</p>
@@ -613,8 +626,8 @@
       <div>
         <div style="font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:#3A332A;margin-bottom:12px">Link & contatti</div>
         <div style="display:flex;flex-direction:column;gap:9px">
-          <a href="/cdn-cgi/l/email-protection#3f4c565250515a534a50485a567f58525e5653115c5052" style="text-decoration:none;display:flex;align-items:center;gap:11px;border:1px solid #E8E0D1;background:#FBF8F1;border-radius:7px;padding:11px 14px;color:#211C16">
-            <span style="font-size:15px">✉</span><span style="font:500 13.5px 'Spectral',serif"><span class="__cf_email__" data-cfemail="5b28323634353e372e342c3e321b3c363a323775383436">[email&#160;protected]</span></span></a>
+          <a href="/cdn-cgi/l/email-protection#2b58424644454e475e445c4e426b4c464a424705484446" style="text-decoration:none;display:flex;align-items:center;gap:11px;border:1px solid #E8E0D1;background:#FBF8F1;border-radius:7px;padding:11px 14px;color:#211C16">
+            <span style="font-size:15px">✉</span><span style="font:500 13.5px 'Spectral',serif"><span class="__cf_email__" data-cfemail="a4d7cdc9cbcac1c8d1cbd3c1cde4c3c9c5cdc88ac7cbc9">[email&#160;protected]</span></span></a>
           <a href="https://www.linkedin.com/in/simonluowei/" target="_blank" rel="noopener" class="lrow" style="text-decoration:none;display:flex;align-items:center;gap:11px;border:1px solid #E8E0D1;background:#FBF8F1;border-radius:7px;padding:11px 14px;color:#211C16;transition:background .15s">
             <span style="font:700 13px 'IBM Plex Mono';color:#2B4C8C">in</span><span style="font:500 13.5px 'Spectral',serif">LinkedIn</span><span style="margin-left:auto;color:#B6AB99">↗</span></a>
           <a href="https://www.instagram.com/simonluowei_/" target="_blank" rel="noopener" class="lrow" style="text-decoration:none;display:flex;align-items:center;gap:11px;border:1px solid #E8E0D1;background:#FBF8F1;border-radius:7px;padding:11px 14px;color:#211C16;transition:background .15s">
@@ -630,7 +643,7 @@
       <div style="font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.24em;text-transform:uppercase;color:#C2452C">Sostieni il progetto · 支持</div>
       <h2 style="font-size:30px;font-weight:600;font-style:italic;margin:10px 0 6px">Offri un caffè all'autore</h2>
       <p style="margin:0 0 24px;font-size:16px;line-height:1.7;color:#7A7064;max-width:620px;text-wrap:pretty">学中文 è e resterà gratuito. Se il corso ti accompagna nello studio, una donazione — anche piccola — aiuta a tenerlo vivo, libero e aggiornato. Grazie di cuore. 🙏</p>
-      <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:stretch">
+      <div class="col1" style="display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:stretch">
         <!-- bank -->
         <div style="background:#FBF8F1;border:1px solid #E8E0D1;border-radius:12px;padding:24px 26px">
           <div style="font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#9A8F80;margin-bottom:16px">Bonifico bancario</div>
